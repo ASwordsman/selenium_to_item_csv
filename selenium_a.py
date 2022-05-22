@@ -42,7 +42,7 @@ def upload_execl(url_list):
     column_dict = {"NO": [], "URL": [], "status": []}
     column_list = ['NO', 'URL', "status"]
     num = 1
-    for url in url_list[:2]:
+    for url in url_list[:25]:
         if not url:
             continue
         status = []
@@ -61,25 +61,18 @@ def upload_execl(url_list):
             else:
                 status.append("Error")
             item_driver.quit()
-            column_dict['status'].append(str(status))
 
         except Exception as e:
             status.append('Error')
+        column_dict['status'].append(str(status))
+
         num += 1
     print(column_dict)
     df = pd.DataFrame(column_dict)
     df = df[column_list]
-    return df
-    # df.to_csv('./item_status.csv', index=False)
+    df.to_csv('./item_status.csv', index=False)
 
 
-# def post_theadings(item_url_list):
-#     thread_pool = []
-#     for i in range(0, 50):
-#         th = threading.Thread(target=upload_execl, args=item_url_list)
-#         thread_pool.append(th)
-#     for thread in thread_pool:
-#         thread.start()
 
 
 if __name__ == '__main__':
