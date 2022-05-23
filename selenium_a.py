@@ -42,7 +42,7 @@ def upload_execl(url_list):
     column_dict = {"NO": [], "URL": [], "status": []}
     column_list = ['NO', 'URL', "status"]
     num = 1
-    for url in url_list[:25]:
+    for url in url_list:
         if not url:
             continue
         status = []
